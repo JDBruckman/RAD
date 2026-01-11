@@ -6,13 +6,19 @@ import type { User } from '@/graphql/schema.types'
 
 const CurrentUser = () => {
   const { data: user } = useGetIdentity<User>()
+
   return (
     <Popover 
       placement="bottomRight"
       trigger="click"
       styles={{ root: { zIndex: 999}, body: { padding: 0 }}}
     >
-      <CustomAvatar />
+      <CustomAvatar 
+        name={user?.name}
+        src={user?.avatarUrl}
+        size='default'
+        style={{ cursor: 'pointer' }}
+      />
     </Popover>
   )
 }
